@@ -1,4 +1,4 @@
-package myconnector.mainframe;
+
 
 /*
  * To change this template, choose Tools | Templates
