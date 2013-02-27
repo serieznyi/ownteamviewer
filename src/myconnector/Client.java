@@ -2,12 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package java.myconnector;
+
+package myconnector;
 
 /**
  *
- * @author serieznyi
+ * @author Admin
  */
-public class ServerInterface {
-    
+public class Client {
+
 }
