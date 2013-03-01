@@ -1,4 +1,4 @@
-package myconnector.client.gui;
+package myconnector.client;
 
 /*
  * To change this template, choose Tools | Templates

@@ -4,6 +4,9 @@
  */
 package myconnector.mainframe;
 
+import java.io.IOException;
+import myconnector.server.Server;
+
 /**
  *
  * @author serieznyi
@@ -13,10 +16,14 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame1
      */
-    public MainFrame() {
+    public MainFrame() throws IOException {
         initComponents();
         
         this.setLocation(400, 150);
+        
+        Server server = new Server();
+        
+        server.start();
     }
 
     /**

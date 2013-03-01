@@ -16,7 +16,7 @@ public class GlobalPanel extends javax.swing.JPanel {
     public GlobalPanel() {
         initComponents();
     }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,18 +27,15 @@ public class GlobalPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         startPanel1 = new myconnector.mainframe.StartPanel();
-        clientMainPanel1 = new myconnector.client.gui.ClientMainPanel();
-        serverMainPanel1 = new myconnector.server.gui.ServerMainPanel();
+        workingPanel1 = new myconnector.mainframe.WorkingPanel();
 
         setLayout(new java.awt.CardLayout());
         add(startPanel1, "card2");
-        add(clientMainPanel1, "card4");
-        add(serverMainPanel1, "card5");
+        add(workingPanel1, "card3");
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private myconnector.client.gui.ClientMainPanel clientMainPanel1;
-    private myconnector.server.gui.ServerMainPanel serverMainPanel1;
     private myconnector.mainframe.StartPanel startPanel1;
+    private myconnector.mainframe.WorkingPanel workingPanel1;
     // End of variables declaration//GEN-END:variables
 }
