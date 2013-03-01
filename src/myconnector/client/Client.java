@@ -22,37 +22,24 @@ public class Client extends Thread {
     Socket fromserver = null;
     BufferedReader in = null;
     PrintWriter    out = null;
+    BufferedReader inu = null;
     
     public Client(String ip) {
         try {
             System.out.println("Welcome to Client side");
             
             fromserver = new Socket("",4444);
-            BufferedReader in  = new
+            this.in  = new
              BufferedReader(new 
               InputStreamReader(fromserver.getInputStream()));
-            PrintWriter    out = new 
+            this.out = new 
              PrintWriter(fromserver.getOutputStream(),true);
-            BufferedReader inu = new 
+            this.inu = new 
              BufferedReader(new InputStreamReader(System.in));    
             
-            /*
-             String fuser,fserver;
-
-            while ((fuser = inu.readLine())!=null) {
-              out.println(fuser);
-              fserver = in.readLine();
-              System.out.println(fserver);
-              if (fuser.equalsIgnoreCase("close")) break;
-              if (fuser.equalsIgnoreCase("exit")) break;
-            }
-
-            out.close();
-            in.close();
-            inu.close();
-            fromserver.close();
+                      
               
-             */
+             
         } catch (UnknownHostException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -62,7 +49,24 @@ public class Client extends Thread {
     
     @Override
     public void run() {   
-        
+        try {
+            String fuser,fserver;
+
+                while ((fuser = this.inu.readLine())!=null) {
+                  out.println(fuser);
+                  fserver = this.in.readLine();
+                  System.out.println(fserver);
+                  if (fuser.equalsIgnoreCase("close")) break;
+                  if (fuser.equalsIgnoreCase("exit")) break;
+                }
+
+                this.out.close();
+                this.in.close();
+                this.inu.close();
+                this.fromserver.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     
