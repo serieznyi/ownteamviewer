@@ -16,7 +16,6 @@ public class GlobalPanel extends javax.swing.JPanel {
     public GlobalPanel(MainFrame main) {
         this.main = main;
         initComponents();
-        
     }
    
     /**

@@ -152,7 +152,7 @@ public class StartPanel extends javax.swing.JPanel {
             
             CardLayout cl = (CardLayout)(this.getParent().getLayout());
             cl.show(this.getParent(), "working_panel");
-            this.main.startClient("195.69.202.49");
+            this.main.startClient("159.224.217.21");
             
         } catch (UnknownHostException ex) {
             Logger.getLogger(StartPanel.class.getName()).log(Level.SEVERE, null, ex);

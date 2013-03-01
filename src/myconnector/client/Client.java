@@ -28,7 +28,10 @@ public class Client extends Thread {
         try {
             System.out.println("Welcome to Client side");
             
-            fromserver = new Socket("",4444);
+            fromserver = new Socket(ip,4444);
+            
+            System.out.println("We connect to server");
+            
             this.in  = new
              BufferedReader(new 
               InputStreamReader(fromserver.getInputStream()));

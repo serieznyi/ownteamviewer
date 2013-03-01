@@ -20,6 +20,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     private Server server = null;
     private Client client = null;
+    static MainFrame s_main= null;
    
     public MainFrame() throws IOException {
         initComponents();
