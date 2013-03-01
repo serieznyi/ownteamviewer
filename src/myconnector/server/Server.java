@@ -6,10 +6,15 @@ package myconnector.server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.MalformedURLException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URL;
 
 /**
  *
@@ -22,7 +27,7 @@ public class Server extends Thread {
     private ServerSocket servers = null;    //Сокет сервера
     private Socket fromclient = null;       // Сокет подключенного клиента
 
-    public Server() throws IOException {
+    public Server() {
 
         super();
 
@@ -55,9 +60,9 @@ public class Server extends Thread {
 
     @Override
     public void run() {
-
+            
         try {
-
+            System.out.println("IP:"+this.getCurrentIP());
             System.out.print("Waiting for a client...");
             this.fromclient = this.servers.accept();
             System.out.println("Client connected");
@@ -66,5 +71,51 @@ public class Server extends Thread {
             System.exit(-1);
         }
 
+    }
+    
+    private String getCurrentIP() {
+        String result = null;
+        try {
+            BufferedReader reader = null;
+            try {
+                URL url = new URL("http://myip.by/");
+                InputStream inputStream = null;
+                inputStream = url.openStream();
+                reader = new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder allText = new StringBuilder();
+                char[] buff = new char[1024];
+ 
+                int count = 0;
+                while ((count = reader.read(buff)) != -1) {
+                    allText.append(buff, 0, count);
+                }
+                // Строка содержащая IP имеет следующий вид 
+                // <a href="whois.php?127.0.0.1">whois 127.0.0.1</a> 
+                Integer indStart = allText.indexOf("\">whois ");
+                Integer indEnd = allText.indexOf("</a>", indStart);
+ 
+                String ipAddress = new String(allText.substring(indStart + 8, indEnd));
+                if (ipAddress.split("\\.").length == 4) { // минимальная (неполная) 
+                //проверка что выбранный текст является ip адресом.
+                    result = ipAddress;
+                }
+            } catch (MalformedURLException ex) {
+                 ex.printStackTrace();
+            } catch (IOException ex) {
+                 ex.printStackTrace();
+            } finally {
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return result;
     }
 }

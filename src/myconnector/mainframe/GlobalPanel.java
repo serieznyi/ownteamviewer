@@ -9,12 +9,13 @@ package myconnector.mainframe;
  * @author serieznyi
  */
 public class GlobalPanel extends javax.swing.JPanel {
-
+    MainFrame main = null;
     /**
      * Creates new form GlobalPanel
      */
-    public GlobalPanel() {
+    public GlobalPanel(MainFrame main) {
         initComponents();
+        this.main = main;
     }
    
     /**
@@ -26,12 +27,12 @@ public class GlobalPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        startPanel1 = new myconnector.mainframe.StartPanel();
+        startPanel1 = new myconnector.mainframe.StartPanel(this.main);
         workingPanel1 = new myconnector.mainframe.WorkingPanel();
 
         setLayout(new java.awt.CardLayout());
-        add(startPanel1, "card2");
-        add(workingPanel1, "card3");
+        add(startPanel1, "start_panel");
+        add(workingPanel1, "working_panel");
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

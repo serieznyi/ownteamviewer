@@ -5,6 +5,8 @@
 package myconnector.mainframe;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
+import myconnector.client.Client;
 import myconnector.server.Server;
 
 /**
@@ -16,14 +18,23 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame1
      */
+    private Server server = null;
+    private Client client = null;
+   
     public MainFrame() throws IOException {
         initComponents();
         
         this.setLocation(400, 150);
         
-        Server server = new Server();
+        this.server = new Server();
         
-        server.start();
+        this.server.start();
+    }
+    
+    public void startClient(String ip) throws UnknownHostException, IOException
+    {
+        this.client = new Client(ip);
+        this.client.start();
     }
 
     /**
@@ -35,7 +46,7 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        globalPanel1 = new myconnector.mainframe.GlobalPanel();
+        globalPanel1 = new myconnector.mainframe.GlobalPanel(this);
         statusBar1 = new myconnector.mainframe.StatusBar();
         menuBar1 = new myconnector.mainframe.MenuBar();
         jMenu3 = new javax.swing.JMenu();

@@ -4,6 +4,9 @@
  */
 package myconnector;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import myconnector.mainframe.MainFrame;
 
 /**
@@ -42,7 +45,11 @@ public class MyConnector {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                try {
+                    new MainFrame().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(MyConnector.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -4,17 +4,27 @@
  */
 package myconnector.mainframe;
 
+import java.awt.CardLayout;
+import java.io.IOException;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JPanel;
+
 /**
  *
  * @author serieznyi
  */
 public class StartPanel extends javax.swing.JPanel {
-
+    MainFrame main = null;
+    
     /**
      * Creates new form StartPanel
      */
-    public StartPanel() {
+    public StartPanel(MainFrame main) {
         initComponents();
+        this.main = main;
+               
     }
 
     /**
@@ -138,7 +148,18 @@ public class StartPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            
+            CardLayout cl = (CardLayout)(this.getParent().getLayout());
+            cl.show(this.getParent(), "working_panel");
+            this.main.startClient("195.69.202.49");
+            
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(StartPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(StartPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
