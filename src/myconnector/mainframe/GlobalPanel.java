@@ -14,8 +14,9 @@ public class GlobalPanel extends javax.swing.JPanel {
      * Creates new form GlobalPanel
      */
     public GlobalPanel(MainFrame main) {
-        initComponents();
         this.main = main;
+        initComponents();
+        
     }
    
     /**

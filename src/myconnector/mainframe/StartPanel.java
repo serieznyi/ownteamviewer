@@ -22,8 +22,8 @@ public class StartPanel extends javax.swing.JPanel {
      * Creates new form StartPanel
      */
     public StartPanel(MainFrame main) {
-        initComponents();
         this.main = main;
+        initComponents();
                
     }
 
