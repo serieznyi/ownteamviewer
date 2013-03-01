@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.Inet4Address;
-import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -64,7 +62,7 @@ public class Server extends Thread {
     public void run() {
             
         try {
-            System.out.println("IP:"+this.getCurrentIP());
+         //   System.out.println("IP:"+this.getCurrentIP());
             System.out.print("Waiting for a client...");
             this.fromclient = this.servers.accept();
             System.out.println("Client connected");
@@ -96,7 +94,7 @@ public class Server extends Thread {
 
     }
     
-    private String getCurrentIP() {
+    public String getCurrentIP() {
         String result = null;
         try {
             BufferedReader reader = null;

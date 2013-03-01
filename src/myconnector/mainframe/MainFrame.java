@@ -20,10 +20,12 @@ public class MainFrame extends javax.swing.JFrame {
      */
     private Server server = null;
     private Client client = null;
-    static MainFrame s_main= null;
+    static MainFrame main = null;
    
     public MainFrame() throws IOException {
         initComponents();
+        
+        MainFrame.main = this;
         
         this.setLocation(400, 150);
         
@@ -47,7 +49,7 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        globalPanel1 = new myconnector.mainframe.GlobalPanel(this);
+        globalPanel1 = new myconnector.mainframe.GlobalPanel();
         statusBar1 = new myconnector.mainframe.StatusBar();
         menuBar1 = new myconnector.mainframe.MenuBar();
         jMenu3 = new javax.swing.JMenu();

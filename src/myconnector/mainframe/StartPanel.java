@@ -9,20 +9,16 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JPanel;
 
 /**
  *
  * @author serieznyi
  */
-public class StartPanel extends javax.swing.JPanel {
-    MainFrame main = null;
-    
+public class StartPanel extends javax.swing.JPanel {    
     /**
      * Creates new form StartPanel
      */
-    public StartPanel(MainFrame main) {
-        this.main = main;
+    public StartPanel() {
         initComponents();
                
     }
@@ -39,10 +35,10 @@ public class StartPanel extends javax.swing.JPanel {
         jTextField4 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jtf_set_ip = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jtf_your_ip = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -61,7 +57,12 @@ public class StartPanel extends javax.swing.JPanel {
 
         jLabel2.setText("IP сервера");
 
-        jTextField1.setEnabled(false);
+        jtf_your_ip.setEnabled(false);
+        jtf_your_ip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtf_your_ipActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Пароль");
 
@@ -93,7 +94,7 @@ public class StartPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
+                                    .addComponent(jtf_your_ip)
                                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(141, 141, 141)
@@ -110,7 +111,7 @@ public class StartPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel5))
                                 .addGap(32, 32, 32)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField3)
+                                    .addComponent(jtf_set_ip)
                                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(144, Short.MAX_VALUE))
         );
@@ -122,7 +123,7 @@ public class StartPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtf_your_ip, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -132,7 +133,7 @@ public class StartPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtf_set_ip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -149,10 +150,10 @@ public class StartPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            
+            //CardLayout cl = (CardLayout)(this.getParent().getLayout());
             CardLayout cl = (CardLayout)(this.getParent().getLayout());
             cl.show(this.getParent(), "working_panel");
-            this.main.startClient("159.224.217.21");
+            MainFrame.main.startClient(this.jtf_set_ip.getText());
             
         } catch (UnknownHostException ex) {
             Logger.getLogger(StartPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -162,6 +163,10 @@ public class StartPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jtf_your_ipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_your_ipActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_your_ipActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -170,9 +175,9 @@ public class StartPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jtf_set_ip;
+    private javax.swing.JTextField jtf_your_ip;
     // End of variables declaration//GEN-END:variables
 }

@@ -30,7 +30,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jtf_your_ip" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTextField2" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -54,7 +54,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTextField3" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jtf_set_ip" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTextField4" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -73,7 +73,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField1" alignment="1" min="-2" pref="19" max="-2" attributes="0"/>
+                  <Component id="jtf_your_ip" alignment="1" min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -85,7 +85,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField3" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtf_set_ip" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -112,7 +112,7 @@
         <Property name="text" type="java.lang.String" value="&#x41f;&#x430;&#x440;&#x43e;&#x43b;&#x44c; &#x434;&#x43e;&#x441;&#x442;&#x443;&#x43f;&#x430;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="jtf_set_ip">
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField2">
       <Properties>
@@ -127,10 +127,13 @@
         <Property name="text" type="java.lang.String" value="IP &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x430;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="jtf_your_ip">
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtf_your_ipActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
