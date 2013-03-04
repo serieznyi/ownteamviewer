@@ -4,6 +4,8 @@
  */
 package myconnector.mainframe;
 
+import myconnector.MyConnector;
+
 /**
  *
  * @author serieznyi
@@ -94,7 +96,9 @@ public class WorkingPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String message = jta_message.getText();
         
-
+        MyConnector.main.getNetwork().send_message(message);
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

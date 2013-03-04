@@ -7,9 +7,9 @@ package myconnector.mainframe;
 import java.awt.CardLayout;
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 import myconnector.MyConnector;
 import myconnector.network.Client;
+import myconnector.network.Network;
 import myconnector.network.Server;
 
 /**
@@ -139,5 +139,18 @@ public class MainFrame extends javax.swing.JFrame {
     
     public GlobalPanel getGlobalPanel() {
         return globalPanel1;
+    }
+    
+    public Network getNetwork() 
+    {
+        return (Network)(mode.equals("Server") ? this.server : this.client);
+    }
+    
+    public Server getServer() {
+        return server;
+    }
+
+    public Client getClient() {
+        return client;
     }
 }

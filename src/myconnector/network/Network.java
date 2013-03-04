@@ -10,6 +10,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import myconnector.MyConnector;
+import myconnector.log.Log;
 
 /**
  *
@@ -25,9 +27,9 @@ public class Network extends Thread{
         
     }
     
-    public void send_message()
+    public void send_message(String message)
     {
-        
+        this.out.println(message);
     }
     
     public void disconnect()
