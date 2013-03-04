@@ -23,10 +23,13 @@ public class Log {
     public Log(JTextArea area) {
         MyConnector.log = this;
         this.text_area = area;
+        messages_list = new ArrayList<>();
     }
 
     public void message(String text, byte type) 
-    {    
+    {   
+        messages_list.add(new Message(text, type));
+        this.text_area.append(text+"\n");
         System.out.println(text+"\n");
     }
     
@@ -37,7 +40,8 @@ public class Log {
         
         public Message(String mess, byte type) 
         {
-            
+            this.message = mess;
+            this.type = type;
         }
         
     }

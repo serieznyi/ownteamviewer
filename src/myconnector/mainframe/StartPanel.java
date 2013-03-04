@@ -21,6 +21,8 @@ public class StartPanel extends javax.swing.JPanel {
      */
     public StartPanel() {
         initComponents();
+        
+        //this.jtf_set_ip.setEditable(true);
                
     }
 
@@ -42,14 +44,13 @@ public class StartPanel extends javax.swing.JPanel {
         jtf_your_ip = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jl_mode = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         jLabel4.setText("IP сервера");
 
         jLabel3.setText("Пароль доступа");
 
-        jTextField2.setEnabled(false);
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -58,7 +59,6 @@ public class StartPanel extends javax.swing.JPanel {
 
         jLabel2.setText("IP сервера");
 
-        jtf_your_ip.setEnabled(false);
         jtf_your_ip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtf_your_ipActionPerformed(evt);
@@ -74,7 +74,7 @@ public class StartPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Данные сервера");
+        jl_mode.setText("Данные сервера");
 
         jLabel6.setText("Подключиться к серверу");
 
@@ -87,7 +87,7 @@ public class StartPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addComponent(jl_mode)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,11 +120,11 @@ public class StartPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(7, 7, 7)
-                .addComponent(jLabel1)
+                .addComponent(jl_mode)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
-                    .addComponent(jtf_your_ip, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtf_your_ip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -170,7 +170,6 @@ public class StartPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -178,7 +177,16 @@ public class StartPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel jl_mode;
     private javax.swing.JTextField jtf_set_ip;
     private javax.swing.JTextField jtf_your_ip;
     // End of variables declaration//GEN-END:variables
+
+    void setIP(String ip) {
+        this.jtf_your_ip.setText(ip);
+    }
+
+    void setMode(String mode) {
+        this.jl_mode.setText(mode);
+    }
 }

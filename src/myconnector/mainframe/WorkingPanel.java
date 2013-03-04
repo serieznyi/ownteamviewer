@@ -27,7 +27,7 @@ public class WorkingPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jta_message = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -35,9 +35,9 @@ public class WorkingPanel extends javax.swing.JPanel {
 
         jScrollPane1.setToolTipText("");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jta_message.setColumns(20);
+        jta_message.setRows(5);
+        jScrollPane1.setViewportView(jta_message);
 
         jButton1.setText("send");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +92,9 @@ public class WorkingPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String message = jta_message.getText();
+        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -100,7 +102,7 @@ public class WorkingPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jta_message;
     private myconnector.log.LogPanel logPanel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -37,4 +37,12 @@ public class GlobalPanel extends javax.swing.JPanel {
     private myconnector.mainframe.StartPanel startPanel1;
     private myconnector.mainframe.WorkingPanel workingPanel1;
     // End of variables declaration//GEN-END:variables
+
+    public StartPanel getStartPanel() {
+        return startPanel1;
+    }
+
+    public WorkingPanel getWorkingPanel() {
+        return workingPanel1;
+    }
 }

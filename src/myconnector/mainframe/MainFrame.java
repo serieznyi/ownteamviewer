@@ -4,11 +4,13 @@
  */
 package myconnector.mainframe;
 
+import java.awt.CardLayout;
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import myconnector.MyConnector;
-import myconnector.client.Client;
-import myconnector.server.Server;
+import myconnector.network.Client;
+import myconnector.network.Server;
 
 /**
  *
@@ -21,6 +23,16 @@ public class MainFrame extends javax.swing.JFrame {
      */
     private Server server;
     private Client client;
+    private String mode;
+
+    public String getMode() {
+        return mode;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
+        this.getGlobalPanel().getStartPanel().setMode(mode);
+    }
    
     public MainFrame() throws IOException {
         initComponents();
@@ -42,7 +54,7 @@ public class MainFrame extends javax.swing.JFrame {
     
     public void setIP(String ip)
     {
-       // this.globalPanel1;
+        this.globalPanel1.getStartPanel().setIP(ip);
     }
     
     /**
@@ -119,4 +131,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem menu_item_exit;
     private myconnector.mainframe.StatusBar statusBar1;
     // End of variables declaration//GEN-END:variables
+    
+    public void showPanel(String name) {
+        CardLayout cl = (CardLayout)(this.getGlobalPanel().getLayout());
+        cl.show(this.getGlobalPanel(), name);
+    }
+    
+    public GlobalPanel getGlobalPanel() {
+        return globalPanel1;
+    }
 }

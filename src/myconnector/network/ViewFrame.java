@@ -1,4 +1,4 @@
-package myconnector.client;
+package myconnector.network;
 
 /*
  * To change this template, choose Tools | Templates

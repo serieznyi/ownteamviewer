@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package myconnector.server;
+package myconnector.network;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,6 +15,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import myconnector.MyConnector;
 import myconnector.log.Log;
 
@@ -22,12 +24,9 @@ import myconnector.log.Log;
  *
  * @author serieznyi
  */
-public class Server extends Thread {
+public class Server extends Network{
 
-    private BufferedReader in;       // Поток для чтения
-    private PrintWriter out;       // Поток для записи
     private ServerSocket servers;    //Сокет сервера
-    private Socket fromclient;       // Сокет подключенного клиента
     private int port = 4444;
 
     public Server() throws UnknownHostException 
@@ -35,19 +34,15 @@ public class Server extends Thread {
         super();
         MyConnector.log.message("Start server", Log.LOG_SERVER);
         
-        String ip = InetAddress.getLocalHost().getHostAddress();
-        System.out.println(ip);
-        //MyConnector.main.
-	//ip.getHostAddress()
-        
         // create server socket
         try {
             servers = new ServerSocket(port);
+          //  String ip = servers.getInetAddress().toString();
+            MyConnector.main.setIP("172.27.242.201");
         } catch (IOException e) {
             MyConnector.log.message("Couldn't listen to port"+port, Log.LOG_SERVER);
             System.exit(-1);
         }
-        
         
         /*
          in  = new BufferedReader(new 
@@ -73,26 +68,42 @@ public class Server extends Thread {
             
         try {
          //   System.out.println("IP:"+this.getCurrentIP());
-            System.out.print("Waiting for a client...");
-            this.fromclient = this.servers.accept();
-            System.out.println("Client connected");
-            
-            in  = new BufferedReader(new 
-            InputStreamReader(fromclient.getInputStream()));
-            out = new PrintWriter(fromclient.getOutputStream(),true);
-            String         input,output;
+            MyConnector.log.message("Waiting for a client...", Log.LOG_SERVER);
+            MyConnector.main.setMode("Server");
+            this.socket = this.servers.accept();
+            MyConnector.log.message("Client connected", Log.LOG_SERVER);
+            MyConnector.main.showPanel("working_panel");
 
-            System.out.println("Wait for messages");
-            while ((input = in.readLine()) != null) 
-            {
-            if (input.equalsIgnoreCase("exit"))
-                break;
-            this.out.println("S ::: "+input);
-            System.out.println(input);
-            }
+            in  = new BufferedReader(new 
+            InputStreamReader(this.socket.getInputStream()));
+            out = new PrintWriter(this.socket.getOutputStream(),true);
+           // System.out.println("Wait for messages");
+            
+            Thread Server=new Thread(new Runnable() {
+                        public synchronized  void run() {
+                    try {
+                        String input,output;
+                        
+                        while ((input = in.readLine()) != null) 
+                        {
+                          //  if (input.equalsIgnoreCase("exit"))
+                          //          break;
+                             //   out.println("S ::: "+input);
+                                MyConnector.log.message(input, Log.LOG_CLIENT);
+                               // System.out.println(input);
+                        }
+                        } 
+                        catch (IOException ex) 
+                        {
+                            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        }
+                    });
+            
+            
             this.out.close();
             this.in.close();
-            this.fromclient.close();
+            this.socket.close();
             this.servers.close();
             
             
@@ -148,5 +159,10 @@ public class Server extends Thread {
         }
         
         return result;
+    }
+
+    @Override
+    public void send_message() {
+        
     }
 }
