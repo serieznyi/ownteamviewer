@@ -44,16 +44,6 @@ public class Client extends Network {
 
     @Override
     public void run() {
-        try {
-            String input, output;
-
-            while ((input = this.in.readLine()) != null) {
-                MyConnector.log.message(input, Log.LOG_SERVER);
-            }
-
-        } catch (IOException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        this.read_message();
     }
 }

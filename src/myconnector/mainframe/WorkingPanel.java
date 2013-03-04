@@ -5,6 +5,7 @@
 package myconnector.mainframe;
 
 import myconnector.MyConnector;
+import myconnector.network.Network;
 
 /**
  *
@@ -95,7 +96,7 @@ public class WorkingPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String message = jta_message.getText();
-        
+        jta_message.setText("");
         MyConnector.main.getNetwork().send_message(message);
         
         

@@ -54,14 +54,14 @@
                               </Group>
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jtf_set_ip" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextField4" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
+                                  <Component id="jtf_set_ip" pref="138" max="32767" attributes="0"/>
+                                  <Component id="jTextField4" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="144" max="32767" attributes="0"/>
+              <EmptySpace pref="107" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
