@@ -12,6 +12,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import myconnector.MyConnector;
+import myconnector.log.Log;
 
 /**
  *
@@ -19,18 +21,20 @@ import java.util.logging.Logger;
  */
 public class Client extends Thread {
     
-    Socket fromserver = null;
-    BufferedReader in = null;
-    PrintWriter    out = null;
-    BufferedReader inu = null;
+    Socket fromserver;
+    BufferedReader in;
+    PrintWriter    out;
+    BufferedReader inu;
     
     public Client(String ip) {
         try {
-            System.out.println("Welcome to Client side");
-            
+           // System.out.println("Welcome to Client side");
+            MyConnector.log.message("Start client", Log.LOG_CLIENT);
+            MyConnector.log.message("Trying to connect to the server with the address "+ip, Log.LOG_CLIENT);
             fromserver = new Socket(ip,4444);
             
-            System.out.println("We connect to server");
+            //System.out.println("Conected to server "+ip);
+            MyConnector.log.message("Conected to server "+ip, Log.LOG_CLIENT);
             
             this.in  = new
              BufferedReader(new 

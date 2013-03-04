@@ -6,6 +6,7 @@ package myconnector.mainframe;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import myconnector.MyConnector;
 import myconnector.client.Client;
 import myconnector.server.Server;
 
@@ -18,14 +19,13 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame1
      */
-    private Server server = null;
-    private Client client = null;
-    static MainFrame main = null;
+    private Server server;
+    private Client client;
    
     public MainFrame() throws IOException {
         initComponents();
         
-        MainFrame.main = this;
+        MyConnector.main = this;
         
         this.setLocation(400, 150);
         
@@ -39,7 +39,12 @@ public class MainFrame extends javax.swing.JFrame {
         this.client = new Client(ip);
         this.client.start();
     }
-
+    
+    public void setIP(String ip)
+    {
+       // this.globalPanel1;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

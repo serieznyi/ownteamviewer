@@ -9,10 +9,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
+import java.net.UnknownHostException;
+import myconnector.MyConnector;
+import myconnector.log.Log;
 
 /**
  *
@@ -20,21 +24,27 @@ import java.net.URL;
  */
 public class Server extends Thread {
 
-    private BufferedReader in = null;       // Поток для чтения
-    private PrintWriter out = null;       // Поток для записи
-    private ServerSocket servers = null;    //Сокет сервера
-    private Socket fromclient = null;       // Сокет подключенного клиента
+    private BufferedReader in;       // Поток для чтения
+    private PrintWriter out;       // Поток для записи
+    private ServerSocket servers;    //Сокет сервера
+    private Socket fromclient;       // Сокет подключенного клиента
+    private int port = 4444;
 
-    public Server() {
-
+    public Server() throws UnknownHostException 
+    {
         super();
-
-        System.out.println("Welcome to Server side");
+        MyConnector.log.message("Start server", Log.LOG_SERVER);
+        
+        String ip = InetAddress.getLocalHost().getHostAddress();
+        System.out.println(ip);
+        //MyConnector.main.
+	//ip.getHostAddress()
+        
         // create server socket
         try {
-            servers = new ServerSocket(4444);
+            servers = new ServerSocket(port);
         } catch (IOException e) {
-            System.out.println("Couldn't listen to port 4444");
+            MyConnector.log.message("Couldn't listen to port"+port, Log.LOG_SERVER);
             System.exit(-1);
         }
         

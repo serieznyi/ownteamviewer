@@ -7,6 +7,7 @@ package myconnector;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import myconnector.log.Log;
 import myconnector.mainframe.MainFrame;
 
 /**
@@ -14,8 +15,11 @@ import myconnector.mainframe.MainFrame;
  * @author serieznyi
  */
 public class MyConnector {
-
-        /**
+    
+    public static MainFrame main;
+    public static Log log;
+    
+     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {

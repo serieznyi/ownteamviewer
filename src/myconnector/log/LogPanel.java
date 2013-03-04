@@ -15,6 +15,7 @@ public class LogPanel extends javax.swing.JPanel {
      */
     public LogPanel() {
         initComponents();
+        Log log = new Log(this.jTextArea1);
     }
 
     /**

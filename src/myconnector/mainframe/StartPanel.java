@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import myconnector.MyConnector;
 
 /**
  *
@@ -153,7 +154,7 @@ public class StartPanel extends javax.swing.JPanel {
             //CardLayout cl = (CardLayout)(this.getParent().getLayout());
             CardLayout cl = (CardLayout)(this.getParent().getLayout());
             cl.show(this.getParent(), "working_panel");
-            MainFrame.main.startClient(this.jtf_set_ip.getText());
+            MyConnector.main.startClient(this.jtf_set_ip.getText());
             
         } catch (UnknownHostException ex) {
             Logger.getLogger(StartPanel.class.getName()).log(Level.SEVERE, null, ex);
