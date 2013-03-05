@@ -11,11 +11,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.net.URL;
 import java.net.UnknownHostException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import myconnector.MyConnector;
 import myconnector.log.Log;
 
@@ -52,13 +49,14 @@ public class Server extends Network {
             MyConnector.main.setMode("Server");
             this.socket = this.servers.accept();
             MyConnector.log.message("Client connected", Log.LOG_SERVER);
+            this.keep_alive();
             MyConnector.main.showPanel("working_panel");
 
             this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
             this.out = new PrintWriter(this.socket.getOutputStream(), true);
             
             this.read_message();
-
+            
         } catch (IOException e) {
             System.out.println("Can't accept");
             System.exit(-1);

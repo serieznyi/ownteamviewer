@@ -30,7 +30,7 @@ public class Client extends Network {
             MyConnector.main.setMode("Client");
 
             MyConnector.log.message("Conected to server " + ip, Log.LOG_CLIENT);
-
+            this.keep_alive();
             this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
             this.out = new PrintWriter(this.socket.getOutputStream(), true);
 
