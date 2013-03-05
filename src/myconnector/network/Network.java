@@ -34,6 +34,7 @@ public class Network extends Thread {
                 ? Log.LOG_CLIENT
                 : Log.LOG_SERVER);
         this.out.println(message);
+        this.out.flush();
     }
     
     public void read_message() {
@@ -42,20 +43,22 @@ public class Network extends Thread {
                 
                 while ((input = this.in.readLine()) != null) {
                     
-                     if (input.equalsIgnoreCase(Network.NET_CLOSE_CONNECTION)) {
+                     if (input.equalsIgnoreCase(Network.NET_CLOSE_CONNECTION)) 
+                     {
                             String message = MyConnector.main.getMode().equals("Client") 
                                     ? "Соединение прервано сервером!" 
                                     : "Соединение прервано клиентом!";
                             MyConnector.log.message(message , Log.LOG_SERVER);
                             
                         break;
-                        }
+                      }
                      
-                     if (input.equalsIgnoreCase(Network.NET_ERROR_CLOSE)) {
+                     if (input.equalsIgnoreCase(Network.NET_ERROR_CLOSE)) 
+                     {
                         MyConnector.log.message("Неожиданное завершение!", Log.LOG_SERVER);
                         break;
-                        }
-                        MyConnector.log.message(input, Log.LOG_CLIENT);
+                     }
+                     MyConnector.log.message(input, Log.LOG_CLIENT);
                 }
         } catch (IOException ex) {
             Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, ex);

@@ -5,7 +5,6 @@
 package myconnector.mainframe;
 
 import myconnector.MyConnector;
-import myconnector.network.Network;
 
 /**
  *

@@ -54,9 +54,8 @@ public class Server extends Network {
             MyConnector.log.message("Client connected", Log.LOG_SERVER);
             MyConnector.main.showPanel("working_panel");
 
-            in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-            out = new PrintWriter(this.socket.getOutputStream(), true);
-            // System.out.println("Wait for messages");
+            this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+            this.out = new PrintWriter(this.socket.getOutputStream(), true);
             
             this.read_message();
 
