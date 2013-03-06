@@ -8,9 +8,9 @@ import java.awt.CardLayout;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import myconnector.MyConnector;
-import myconnector.network.Client;
+import myconnector.client.Client;
 import myconnector.network.Network;
-import myconnector.network.Server;
+import myconnector.server.Server;
 
 /**
  *

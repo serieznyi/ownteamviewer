@@ -4,12 +4,11 @@
  */
 package myconnector.network;
 
+import myconnector.client.Client;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import myconnector.MyConnector;
@@ -26,6 +25,7 @@ public class Network extends Thread {
     protected Socket socket;
     protected PrintWriter out;
     protected BufferedReader in;
+    protected Thread isAlive;
 
     public Network() {
     }
@@ -65,19 +65,11 @@ public class Network extends Thread {
     }
 
     public void keep_alive() {
-        final Socket socket = this.socket;
-        Thread Server = new Thread(new Runnable() {
-            public synchronized void run() {
-                try {
-                        while(true)
-                        {
-                            System.out.println(socket.getKeepAlive());
-                        }
-                    
-                } catch (SocketException ex) {
-                    Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
+        final Socket temp_socket = this.socket;
+        this.isAlive = new Thread(new Runnable() {
+            public void run() {
+                System.out.println("start check");
+                  System.out.println(temp_socket.isClosed());
             }
         });
     }

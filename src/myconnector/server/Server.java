@@ -2,8 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package myconnector.network;
+package myconnector.server;
 
+import java.awt.AWTException;
+import java.awt.Dimension;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,8 +20,11 @@ import java.net.MalformedURLException;
 import java.net.ServerSocket;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import myconnector.MyConnector;
 import myconnector.log.Log;
+import myconnector.network.Network;
 
 /**
  *
@@ -24,6 +34,8 @@ public class Server extends Network {
 
     private ServerSocket servers;    //Сокет сервера
     private int port = 4444;
+    private Rectangle rectangle = null;
+    private Robot robot = null;
 
     public Server() throws UnknownHostException {
         super();
@@ -34,6 +46,21 @@ public class Server extends Network {
             servers = new ServerSocket(port);
             //  String ip = servers.getInetAddress().toString();
             MyConnector.main.setIP("172.27.242.201");
+            
+            //Get default screen device
+            GraphicsEnvironment gEnv=GraphicsEnvironment.getLocalGraphicsEnvironment();//Получение списка стройств системы
+            GraphicsDevice gDev=gEnv.getDefaultScreenDevice(); // Получить устройство вывода графики
+
+            //Get screen dimensions
+            Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+            rectangle = new Rectangle(dim);
+
+            //Prepare Robot object
+            robot = new Robot(gDev);
+            
+            
+        } catch (AWTException ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException e) {
             MyConnector.log.message("Couldn't listen to port" + port, Log.LOG_SERVER);
             System.exit(-1);
@@ -42,13 +69,15 @@ public class Server extends Network {
 
     @Override
     public void run() {
-
         try {
             //   System.out.println("IP:"+this.getCurrentIP());
             MyConnector.log.message("Waiting for a client...", Log.LOG_SERVER);
             MyConnector.main.setMode("Server");
             this.socket = this.servers.accept();
             MyConnector.log.message("Client connected", Log.LOG_SERVER);
+        //    System.out.println(this.socket.getKeepAlive());
+            new ScreenCapture(socket, robot, rectangle);
+            
             this.keep_alive();
             MyConnector.main.showPanel("working_panel");
 

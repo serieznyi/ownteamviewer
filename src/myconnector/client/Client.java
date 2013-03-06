@@ -2,11 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package myconnector.network;
+package myconnector.client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -14,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import myconnector.MyConnector;
 import myconnector.log.Log;
+import myconnector.network.Network;
 
 /**
  *
@@ -30,6 +32,12 @@ public class Client extends Network {
             MyConnector.main.setMode("Client");
 
             MyConnector.log.message("Conected to server " + ip, Log.LOG_CLIENT);
+           
+            ViewFrame viewframe = new ViewFrame();
+            
+            ScreenReciever screenReciever = new ScreenReciever(
+                    new ObjectInputStream(this.socket.getInputStream()), viewframe.getRecieverPanel());
+            
             this.keep_alive();
             this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
             this.out = new PrintWriter(this.socket.getOutputStream(), true);
