@@ -1,5 +1,6 @@
 package myconnector.client;
 
+import java.awt.Toolkit;
 import javax.swing.JPanel;
 
 /*
@@ -20,7 +21,12 @@ public class ViewFrame extends javax.swing.JFrame {
     public ViewFrame() {
         initComponents();
         
-        this.setBounds(25, 25, 400, 400);
+        //this.setBounds(25, 25, 400, 400);
+        Toolkit tk = Toolkit.getDefaultToolkit();  
+        int xSize = ((int) tk.getScreenSize().getWidth());  
+        int ySize = ((int) tk.getScreenSize().getHeight());  
+        this.setSize(xSize,ySize); 
+        this.setVisible(true);
     }
 
     /**

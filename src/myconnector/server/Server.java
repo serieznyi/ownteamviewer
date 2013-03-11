@@ -23,6 +23,7 @@ import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import myconnector.MyConnector;
+import myconnector.client.ViewFrame;
 import myconnector.log.Log;
 import myconnector.network.Network;
 
