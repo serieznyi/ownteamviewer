@@ -35,7 +35,7 @@ class ScreenCapture extends Thread {
              * Send screen size to the server in order to calculate correct mouse
              * location on the server's panel
              */
-            oos.writeObject(rectangle);
+         //   oos.writeObject(rectangle);
         }catch(IOException ex){
             ex.printStackTrace();
         }
