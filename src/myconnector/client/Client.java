@@ -33,10 +33,11 @@ public class Client extends Network {
 
             MyConnector.log.message("Conected to server " + ip, Log.LOG_CLIENT);
            
-            ViewFrame viewframe = new ViewFrame();
+            //ViewFrame viewframe = new ViewFrame();
+            ViewPanel viewPanel = new ViewPanel();
             
             new ScreenReciever(
-                    new ObjectInputStream(this.socket.getInputStream()), viewframe.getRecieverPanel());
+                    new ObjectInputStream(this.socket.getInputStream()), viewPanel.getRecieverPanel());
             
            // this.keep_alive();
            // this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));

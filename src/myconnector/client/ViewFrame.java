@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  *
  * @author serieznyi
  */
-public class ViewFrame extends javax.swing.JFrame {
+public class ViewFrame extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewFrame

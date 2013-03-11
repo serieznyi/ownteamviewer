@@ -31,9 +31,7 @@ class ScreenReciever extends Thread {
     }
 
     public void run(){
-        
             try {
-                
                 //Read screenshots of the client then draw them
                 while(continueLoop){
                     //Recieve client screenshot and resize it to the current panel size
