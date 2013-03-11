@@ -28,7 +28,6 @@ class ScreenCapture extends Thread {
     public void run(){
         ObjectOutputStream oos = null; //Used to write an object to the streem
 
-
         try{
             //Prepare ObjectOutputStream
             oos = new ObjectOutputStream(socket.getOutputStream());

@@ -19,6 +19,8 @@ public class ViewFrame extends javax.swing.JFrame {
      */
     public ViewFrame() {
         initComponents();
+        
+        this.setBounds(25, 25, 400, 400);
     }
 
     /**

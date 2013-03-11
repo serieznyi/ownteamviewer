@@ -39,12 +39,12 @@ class ScreenReciever extends Thread {
                     //Recieve client screenshot and resize it to the current panel size
                     ImageIcon imageIcon = (ImageIcon) cObjectInputStream.readObject();
                     System.out.println("New image recieved");
-                    Image image = imageIcon.getImage();
+               /*     Image image = imageIcon.getImage();
                     image = image.getScaledInstance(cPanel.getWidth(),cPanel.getHeight()
                                                         ,Image.SCALE_FAST);
                     //Draw the recieved screenshot
                     Graphics graphics = cPanel.getGraphics();
-                    graphics.drawImage(image, 0, 0, cPanel.getWidth(),cPanel.getHeight(),cPanel);
+                    graphics.drawImage(image, 0, 0, cPanel.getWidth(),cPanel.getHeight(),cPanel);*/
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();

@@ -35,12 +35,12 @@ public class Client extends Network {
            
             ViewFrame viewframe = new ViewFrame();
             
-            ScreenReciever screenReciever = new ScreenReciever(
+            new ScreenReciever(
                     new ObjectInputStream(this.socket.getInputStream()), viewframe.getRecieverPanel());
             
-            this.keep_alive();
-            this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-            this.out = new PrintWriter(this.socket.getOutputStream(), true);
+           // this.keep_alive();
+           // this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+          //  this.out = new PrintWriter(this.socket.getOutputStream(), true);
 
         } catch (UnknownHostException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
@@ -51,6 +51,6 @@ public class Client extends Network {
 
     @Override
     public void run() {
-        this.read_message();
+       // this.read_message();
     }
 }
