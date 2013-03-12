@@ -12,7 +12,7 @@ import myconnector.MyConnector;
  *
  * @author serieznyi
  */
-public class Log {
+public class Log extends Thread{
     
     public static final byte LOG_CLIENT = 1;
     public static final byte LOG_SERVER = 2;
@@ -44,5 +44,12 @@ public class Log {
             this.type = type;
         }
         
+    }
+    
+    @Override
+    public void run() {
+
+        
+    
     }
 }

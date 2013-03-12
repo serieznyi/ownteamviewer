@@ -26,7 +26,7 @@ public class Client extends Network {
             MyConnector.log.message("Start client", Log.LOG_CLIENT);
             MyConnector.log.message("Trying to connect to the server with the address " + ip, Log.LOG_CLIENT);
             this.socketViewer = new Socket(ip, this.portViewer);
-            this.socketViewer = new Socket(ip, this.portLog);
+            this.socketLog = new Socket(ip, this.portLog);
             MyConnector.main.setMode("Client");
 
             MyConnector.log.message("Conected to server " + ip, Log.LOG_CLIENT);
