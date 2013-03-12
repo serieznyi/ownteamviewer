@@ -22,14 +22,13 @@ public class Client extends Network {
 
     public Client(String ip) {
         try {
-            // System.out.println("Welcome to Client side");
-            MyConnector.log.message("Start client", Log.LOG_CLIENT);
-            MyConnector.log.message("Trying to connect to the server with the address " + ip, Log.LOG_CLIENT);
-            this.socketViewer = new Socket(ip, this.portViewer);
             this.socketLog = new Socket(ip, this.portLog);
+            MyConnector.log = new Log(MyConnector.main.getLogTextArea(), this.socketLog);
+            MyConnector.log.show_message("Start client "+this.getCurrentIP());
+            MyConnector.log.show_message("Trying to connect to the server with the address " + ip);
+            this.socketViewer = new Socket(ip, this.portViewer);
             MyConnector.main.setMode("Client");
-
-            MyConnector.log.message("Conected to server " + ip, Log.LOG_CLIENT);
+            MyConnector.log.show_message("Conected to server " + ip);
            
             ViewFrame viewframe = new ViewFrame();
             
@@ -50,6 +49,7 @@ public class Client extends Network {
 
     @Override
     public void run() {
+        
        // this.read_message();
     }
 }

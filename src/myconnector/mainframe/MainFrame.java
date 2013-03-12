@@ -7,6 +7,7 @@ package myconnector.mainframe;
 import java.awt.CardLayout;
 import java.io.IOException;
 import java.net.UnknownHostException;
+import javax.swing.JTextArea;
 import myconnector.MyConnector;
 import myconnector.client.Client;
 import myconnector.network.Network;
@@ -42,8 +43,6 @@ public class MainFrame extends javax.swing.JFrame {
         this.setLocation(400, 150);
         
         this.server = new Server();
-        
-        this.server.start();
     }
     
     public void startClient(String ip) throws UnknownHostException, IOException
@@ -152,5 +151,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     public Client getClient() {
         return client;
+    }
+
+    public JTextArea getLogTextArea() {
+        return this.globalPanel1.getWorkingPanel().getLogTextArea();
     }
 }

@@ -6,8 +6,12 @@ package myconnector.network;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
 import java.net.Socket;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import myconnector.MyConnector;
@@ -24,47 +28,11 @@ public class Network extends Thread {
     public static final String NET_ERROR_CLOSE = ":error";
     protected Socket socketViewer;
     protected Socket socketLog;
-    protected PrintWriter out;
-    protected BufferedReader in;
     protected Thread isAlive;
     final public int portViewer = 4444;
     final public int portLog = 4445;
 
     public Network() {
-    }
-
-    public void send_message(String message) {
-        MyConnector.log.message(message, MyConnector.main.getMode().equals("Client")
-                ? Log.LOG_CLIENT
-                : Log.LOG_SERVER);
-        this.out.println(message);
-        this.out.flush();
-    }
-
-    public void read_message() {
-        try {
-            String input, out;
-
-            while ((input = this.in.readLine()) != null) {
-
-                if (input.equalsIgnoreCase(Network.NET_CLOSE_CONNECTION)) {
-                    String message = MyConnector.main.getMode().equals("Client")
-                            ? "Соединение прервано сервером!"
-                            : "Соединение прервано клиентом!";
-                    MyConnector.log.message(message, Log.LOG_SERVER);
-
-                    break;
-                }
-
-                if (input.equalsIgnoreCase(Network.NET_ERROR_CLOSE)) {
-                    MyConnector.log.message("Неожиданное завершение!", Log.LOG_SERVER);
-                    break;
-                }
-                MyConnector.log.message(input, Log.LOG_CLIENT);
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     public void keep_alive() {
@@ -76,14 +44,50 @@ public class Network extends Thread {
             }
         });
     }
-
-    public void disconnect() {
+    
+    public String getCurrentIP() {
+        String result = null;
         try {
-            this.out.close();
-            this.in.close();
-            this.socketViewer.close();
-        } catch (IOException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            BufferedReader reader = null;
+            try {
+                URL url = new URL("http://myip.by/");
+                InputStream inputStream = null;
+                inputStream = url.openStream();
+                reader = new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder allText = new StringBuilder();
+                char[] buff = new char[1024];
+
+                int count = 0;
+                while ((count = reader.read(buff)) != -1) {
+                    allText.append(buff, 0, count);
+                }
+                // Строка содержащая IP имеет следующий вид 
+                // <a href="whois.php?127.0.0.1">whois 127.0.0.1</a> 
+                Integer indStart = allText.indexOf("\">whois ");
+                Integer indEnd = allText.indexOf("</a>", indStart);
+
+                String ipAddress = new String(allText.substring(indStart + 8, indEnd));
+                if (ipAddress.split("\\.").length == 4) { // минимальная (неполная) 
+                    //проверка что выбранный текст является ip адресом.
+                    result = ipAddress;
+                }
+            } catch (MalformedURLException ex) {
+                ex.printStackTrace();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            } finally {
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        return result;
     }
 }
