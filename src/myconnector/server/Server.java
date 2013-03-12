@@ -72,7 +72,7 @@ public class Server extends Network {
         try {
             //   System.out.println("IP:"+this.getCurrentIP());
        //     MyConnector.log.message("Waiting for a client...", Log.LOG_SERVER);
-       //     MyConnector.main.setMode("Server");
+            MyConnector.main.setMode("Server");
             this.socketLog = this.serverLog.accept();
             MyConnector.log = new Log(MyConnector.main.getLogTextArea(), socketLog);
             
