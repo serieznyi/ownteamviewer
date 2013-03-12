@@ -15,7 +15,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.ServerSocket;
 import java.net.URL;
@@ -23,7 +22,6 @@ import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import myconnector.MyConnector;
-import myconnector.client.ViewFrame;
 import myconnector.log.Log;
 import myconnector.network.Network;
 
@@ -33,8 +31,8 @@ import myconnector.network.Network;
  */
 public class Server extends Network {
 
-    private ServerSocket servers;    //Сокет сервера
-    private int port = 4444;
+    private ServerSocket serverView;    
+    private ServerSocket serverLog; 
     private Rectangle rectangle = null;
     private Robot robot = null;
 
@@ -44,8 +42,8 @@ public class Server extends Network {
 
         // create server socket
         try {
-            servers = new ServerSocket(port);
-            //  String ip = servers.getInetAddress().toString();
+            serverView = new ServerSocket(portViewer);
+            serverLog = new ServerSocket(portLog);
             MyConnector.main.setIP("172.27.242.201");
             
             //Get default screen device
@@ -63,7 +61,7 @@ public class Server extends Network {
         } catch (AWTException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException e) {
-            MyConnector.log.message("Couldn't listen to port" + port, Log.LOG_SERVER);
+            MyConnector.log.message("Couldn't listen to port" + portViewer, Log.LOG_SERVER);
             System.exit(-1);
         }
     }
@@ -74,7 +72,8 @@ public class Server extends Network {
             //   System.out.println("IP:"+this.getCurrentIP());
             MyConnector.log.message("Waiting for a client...", Log.LOG_SERVER);
             MyConnector.main.setMode("Server");
-            this.socket = this.servers.accept();
+            this.socketViewer = this.serverView.accept();
+            this.socketLog = this.serverLog.accept();
             MyConnector.log.message("Client connected", Log.LOG_SERVER);
         //    System.out.println(this.socket.getKeepAlive());
             
@@ -84,7 +83,7 @@ public class Server extends Network {
            // this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
            // this.out = new PrintWriter(this.socket.getOutputStream(), true);
             
-            new ScreenCapture(socket, robot, rectangle);
+            new ScreenCapture(socketViewer, robot, rectangle);
             
            // this.read_message();
             

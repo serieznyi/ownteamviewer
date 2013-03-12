@@ -4,7 +4,6 @@
  */
 package myconnector.network;
 
-import myconnector.client.Client;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +11,7 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import myconnector.MyConnector;
+import myconnector.client.Client;
 import myconnector.log.Log;
 
 /**
@@ -22,10 +22,13 @@ public class Network extends Thread {
 
     public static final String NET_CLOSE_CONNECTION = ":close";
     public static final String NET_ERROR_CLOSE = ":error";
-    protected Socket socket;
+    protected Socket socketViewer;
+    protected Socket socketLog;
     protected PrintWriter out;
     protected BufferedReader in;
     protected Thread isAlive;
+    final public int portViewer = 4444;
+    final public int portLog = 4445;
 
     public Network() {
     }
@@ -65,7 +68,7 @@ public class Network extends Thread {
     }
 
     public void keep_alive() {
-        final Socket temp_socket = this.socket;
+        final Socket temp_socket = this.socketViewer;
         this.isAlive = new Thread(new Runnable() {
             public void run() {
                 System.out.println("start check");
@@ -78,7 +81,7 @@ public class Network extends Thread {
         try {
             this.out.close();
             this.in.close();
-            this.socket.close();
+            this.socketViewer.close();
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
