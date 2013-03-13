@@ -19,7 +19,9 @@ import myconnector.network.Network;
  * @author serieznyi
  */
 public class Client extends Network {
-
+    
+    private ScreenReciever screenReciever;
+    
     public Client(String ip) {
         try {
             this.socketLog = new Socket(ip, this.portLog);
@@ -31,14 +33,12 @@ public class Client extends Network {
             MyConnector.log.show_message("Conected to server " + ip);
            
             ViewFrame viewframe = new ViewFrame();
-            
-            new ScreenReciever(
-                    new ObjectInputStream(this.socketViewer.getInputStream()), viewframe.getRecieverPanel()
-            );
-            
-           // this.keep_alive();
-           // this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-          //  this.out = new PrintWriter(this.socket.getOutputStream(), true);
+            screenReciever = new ScreenReciever(
+                                                    new ObjectInputStream(this.socketViewer.getInputStream()), viewframe.getRecieverPanel()
+                                            );
+            // this.keep_alive();
+            // this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+            //  this.out = new PrintWriter(this.socket.getOutputStream(), true);
 
         } catch (UnknownHostException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
@@ -51,5 +51,10 @@ public class Client extends Network {
     public void run() {
         
        // this.read_message();
+    }
+    
+    @Override
+    public void stopConnection() { 
+        this.screenReciever.setContinueLoop(false);
     }
 }

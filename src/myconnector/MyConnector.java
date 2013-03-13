@@ -18,6 +18,8 @@ public class MyConnector {
     
     public static MainFrame main;
     public static Log log;
+    public static final byte CLIENT = 1;
+    public static final byte SERVER = 2;
     
      /**
      * @param args the command line arguments

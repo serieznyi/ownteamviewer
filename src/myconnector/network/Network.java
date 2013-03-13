@@ -85,5 +85,5 @@ public class Network extends Thread {
         return result;
     }
 
-
+    public void stopConnection() { }
 }

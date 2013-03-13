@@ -50,4 +50,8 @@ class ScreenReciever extends Thread {
               ex.printStackTrace();
           }
      }
+
+    public void setContinueLoop(boolean continueLoop) {
+        this.continueLoop = continueLoop;
+    }
 }

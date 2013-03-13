@@ -68,5 +68,9 @@ class ScreenCapture extends Thread {
 
     }
 
+    public void setContinueLoop(boolean continueLoop) {
+        this.continueLoop = continueLoop;
+    }
+
 }
 

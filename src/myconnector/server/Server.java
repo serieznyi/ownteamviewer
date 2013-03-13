@@ -30,6 +30,7 @@ public class Server extends Network {
     private ServerSocket serverLog; 
     private Rectangle rectangle = null;
     private Robot robot = null;
+    private ScreenCapture screenCapture;
 
     public Server() throws UnknownHostException {
         super();
@@ -84,7 +85,7 @@ public class Server extends Network {
            // this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
            // this.out = new PrintWriter(this.socket.getOutputStream(), true);
             
-            new ScreenCapture(socketViewer, robot, rectangle);
+            this.screenCapture = new ScreenCapture(socketViewer, robot, rectangle);
             
            // this.read_message();
             
@@ -93,5 +94,10 @@ public class Server extends Network {
             System.exit(-1);
         }
 
+    }
+    
+    @Override
+    public void stopConnection() { 
+        this.screenCapture.setContinueLoop(false);
     }
 }
