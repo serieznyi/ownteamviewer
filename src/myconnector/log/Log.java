@@ -12,6 +12,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import myconnector.MyConnector;
 import myconnector.network.Network;
@@ -90,8 +91,12 @@ public class Log extends Thread{
                     String message = MyConnector.main.getMode().equals("Client")
                             ? "Соединение прервано сервером!"
                             : "Соединение прервано клиентом!";
-                    this.show_message(message, Log.LOG_SERVER);
-
+                    
+                   // this.show_message(message, Log.LOG_SERVER);
+                    
+                    JOptionPane.showMessageDialog(MyConnector.main,
+                        message);
+                    
                     break;
                 }
                 else if (input.equalsIgnoreCase(Network.NET_ERROR_CLOSE)) {

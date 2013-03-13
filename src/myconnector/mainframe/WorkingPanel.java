@@ -4,6 +4,7 @@
  */
 package myconnector.mainframe;
 
+import java.awt.CardLayout;
 import javax.swing.JTextArea;
 import myconnector.MyConnector;
 
@@ -53,6 +54,11 @@ public class WorkingPanel extends javax.swing.JPanel {
         jLabel1.setText("jLabel1");
 
         jButton2.setText("Disconnect");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -103,9 +109,16 @@ public class WorkingPanel extends javax.swing.JPanel {
         String message = jta_message.getText();
         jta_message.setText("");
         MyConnector.log.pull_message(message);
+       // MyConnector.main.getNetwork().stop();
         
+        CardLayout cl = (CardLayout)(this.getParent().getLayout());
+            cl.show(this.getParent(), "start_panel");
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        MyConnector.log.pull_message(":close");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
