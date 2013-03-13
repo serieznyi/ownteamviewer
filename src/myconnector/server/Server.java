@@ -40,7 +40,6 @@ public class Server extends Network {
         try {
             serverView = new ServerSocket(portViewer);
             serverLog = new ServerSocket(portLog);
-            MyConnector.main.setIP("172.27.242.201");
             
             //Get default screen device
             GraphicsEnvironment gEnv=GraphicsEnvironment.getLocalGraphicsEnvironment();//Получение списка стройств системы
@@ -80,7 +79,7 @@ public class Server extends Network {
         //    System.out.println(this.socket.getKeepAlive());
             
            // this.keep_alive();
-            MyConnector.main.showPanel("working_panel");
+            MyConnector.main.showPanel("work_panel");
 
            // this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
            // this.out = new PrintWriter(this.socket.getOutputStream(), true);

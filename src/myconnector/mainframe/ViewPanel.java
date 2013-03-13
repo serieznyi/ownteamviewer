@@ -8,11 +8,11 @@ package myconnector.mainframe;
  *
  * @author serieznyi
  */
-public class GlobalPanel extends javax.swing.JPanel {
+public class ViewPanel extends javax.swing.JPanel {
     /**
      * Creates new form GlobalPanel
      */
-    public GlobalPanel() {
+    public ViewPanel() {
         initComponents();
     }
    
@@ -30,7 +30,7 @@ public class GlobalPanel extends javax.swing.JPanel {
 
         setLayout(new java.awt.CardLayout());
         add(startPanel1, "start_panel");
-        add(workingPanel1, "working_panel");
+        add(workingPanel1, "work_panel");
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

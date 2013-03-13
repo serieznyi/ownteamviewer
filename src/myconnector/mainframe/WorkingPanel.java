@@ -122,11 +122,6 @@ public class WorkingPanel extends javax.swing.JPanel {
         String message = jta_message.getText();
         jta_message.setText("");
         MyConnector.log.pull_message(message);
-       // MyConnector.main.getNetwork().stop();
-        
-        CardLayout cl = (CardLayout)(this.getParent().getLayout());
-            cl.show(this.getParent(), "start_panel");
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

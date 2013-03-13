@@ -50,12 +50,7 @@ public class MainFrame extends javax.swing.JFrame {
         this.client = new Client(ip);
         this.client.start();
     }
-    
-    public void setIP(String ip)
-    {
-        this.globalPanel1.getStartPanel().setIP(ip);
-    }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,54 +60,10 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        globalPanel1 = new myconnector.mainframe.GlobalPanel();
-        statusBar1 = new myconnector.mainframe.StatusBar();
-        menuBar1 = new myconnector.mainframe.MenuBar();
-        jMenu3 = new javax.swing.JMenu();
-        menu_item_exit = new javax.swing.JMenuItem();
-        menu_item_about = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        viewPanel1 = new myconnector.mainframe.ViewPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jMenu3.setText("Приложение");
-
-        menu_item_exit.setText("Выход");
-        menu_item_exit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_item_exitActionPerformed(evt);
-            }
-        });
-        jMenu3.add(menu_item_exit);
-
-        menuBar1.add(jMenu3);
-
-        menu_item_about.setText("Помощь");
-
-        jMenuItem2.setText("О программе");
-        menu_item_about.add(jMenuItem2);
-
-        menuBar1.add(menu_item_about);
-
-        setJMenuBar(menuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(statusBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(globalPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(globalPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(statusBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        getContentPane().add(viewPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -122,13 +73,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_item_exitActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private myconnector.mainframe.GlobalPanel globalPanel1;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuItem jMenuItem2;
-    private myconnector.mainframe.MenuBar menuBar1;
-    private javax.swing.JMenu menu_item_about;
-    private javax.swing.JMenuItem menu_item_exit;
-    private myconnector.mainframe.StatusBar statusBar1;
+    private myconnector.mainframe.ViewPanel viewPanel1;
     // End of variables declaration//GEN-END:variables
     
     public void showPanel(String name) {
@@ -136,8 +81,8 @@ public class MainFrame extends javax.swing.JFrame {
         cl.show(this.getGlobalPanel(), name);
     }
     
-    public GlobalPanel getGlobalPanel() {
-        return globalPanel1;
+    public ViewPanel getGlobalPanel() {
+        return viewPanel1;
     }
     
     public Network getNetwork() 
@@ -154,6 +99,6 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     public JTextArea getLogTextArea() {
-        return this.globalPanel1.getWorkingPanel().getLogTextArea();
+        return this.viewPanel1.getWorkingPanel().getLogTextArea();
     }
 }

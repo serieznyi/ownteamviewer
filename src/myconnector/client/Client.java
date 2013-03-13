@@ -32,14 +32,9 @@ public class Client extends Network {
             MyConnector.main.setMode("Client");
             MyConnector.log.show_message("Conected to server " + ip);
            
-            ViewFrame viewframe = new ViewFrame();
             screenReciever = new ScreenReciever(
-                                                    new ObjectInputStream(this.socketViewer.getInputStream()), viewframe.getRecieverPanel()
+                            new ObjectInputStream(this.socketViewer.getInputStream()), MyConnector.main.getGlobalPanel()
                                             );
-            // this.keep_alive();
-            // this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-            //  this.out = new PrintWriter(this.socket.getOutputStream(), true);
-
         } catch (UnknownHostException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
