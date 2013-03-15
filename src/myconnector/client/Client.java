@@ -4,6 +4,7 @@
  */
 package myconnector.client;
 
+import java.awt.Window;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
@@ -21,6 +22,7 @@ import myconnector.network.Network;
 public class Client extends Network {
     
     private ScreenReciever screenReciever;
+    private ViewFrame viewFrame;
     
     public Client(String ip) {
         try {
@@ -32,8 +34,13 @@ public class Client extends Network {
             MyConnector.main.setMode("Client");
             MyConnector.log.show_message("Conected to server " + ip);
            
+            MyConnector.main.showPanel("card4");
+            
+            myconnector.MyConnector.view.setVisible(true);
+            MyConnector.main.fixedFrame();
+            
             screenReciever = new ScreenReciever(
-                            new ObjectInputStream(this.socketViewer.getInputStream()), MyConnector.main.getGlobalPanel()
+                            new ObjectInputStream(this.socketViewer.getInputStream()), MyConnector.view.getPaintPanel()
                                             );
         } catch (UnknownHostException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
@@ -43,10 +50,7 @@ public class Client extends Network {
     }
 
     @Override
-    public void run() {
-        
-       // this.read_message();
-    }
+    public void run() { }
     
     @Override
     public void stopConnection() { 

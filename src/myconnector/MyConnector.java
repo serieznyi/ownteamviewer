@@ -4,9 +4,7 @@
  */
 package myconnector;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import myconnector.client.ViewFrame;
 import myconnector.log.Log;
 import myconnector.mainframe.MainFrame;
 
@@ -16,9 +14,10 @@ import myconnector.mainframe.MainFrame;
  */
 public class MyConnector {
     
-    public static MainFrame main;
-    public static Log log;
-    public static final byte CLIENT = 1;
+    public static MainFrame main;           // Ссылка на главный фрейм
+    public static ViewFrame view;           // Ссылка на 
+    public static Log log;                  // Ссылка на лог
+    public static final byte CLIENT = 1;    // Режимы работы программы    
     public static final byte SERVER = 2;
     
      /**
@@ -51,11 +50,7 @@ public class MyConnector {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
                     new MainFrame().setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(MyConnector.class.getName()).log(Level.SEVERE, null, ex);
-                }
             }
         });
     }

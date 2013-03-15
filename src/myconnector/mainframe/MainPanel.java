@@ -8,14 +8,15 @@ package myconnector.mainframe;
  *
  * @author serieznyi
  */
-public class ViewPanel extends javax.swing.JPanel {
+public class MainPanel extends javax.swing.JPanel {
+
     /**
-     * Creates new form GlobalPanel
+     * Creates new form MainPanel
      */
-    public ViewPanel() {
+    public MainPanel() {
         initComponents();
     }
-   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,20 +30,15 @@ public class ViewPanel extends javax.swing.JPanel {
         workingPanel1 = new myconnector.mainframe.WorkingPanel();
 
         setLayout(new java.awt.CardLayout());
-        add(startPanel1, "start_panel");
-        add(workingPanel1, "work_panel");
+        add(startPanel1, "card2");
+        add(workingPanel1, "card3");
     }// </editor-fold>//GEN-END:initComponents
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private myconnector.mainframe.StartPanel startPanel1;
     private myconnector.mainframe.WorkingPanel workingPanel1;
     // End of variables declaration//GEN-END:variables
 
-    public StartPanel getStartPanel() {
-        return startPanel1;
-    }
-
-    public WorkingPanel getWorkingPanel() {
-        return workingPanel1;
+    WorkingPanel getWorkingPanel() {
+        return this.workingPanel1;
     }
 }

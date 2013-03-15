@@ -5,11 +5,16 @@
 package myconnector.mainframe;
 
 import java.awt.CardLayout;
+import java.awt.Rectangle;
+import java.awt.Window;
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTextArea;
 import myconnector.MyConnector;
 import myconnector.client.Client;
+import myconnector.client.ViewFrame;
 import myconnector.network.Network;
 import myconnector.server.Server;
 
@@ -18,10 +23,7 @@ import myconnector.server.Server;
  * @author serieznyi
  */
 public class MainFrame extends javax.swing.JFrame {
-
-    /**
-     * Creates new form MainFrame1
-     */
+    
     private Server server;
     private Client client;
     private String mode;
@@ -32,23 +34,49 @@ public class MainFrame extends javax.swing.JFrame {
 
     public void setMode(String mode) {
         this.mode = mode;
-        this.getGlobalPanel().getStartPanel().setMode(mode);
-    }
-   
-    public MainFrame() throws IOException {
-        initComponents();
-        
-        MyConnector.main = this;
-        
-        this.setLocation(400, 150);
-        
-        this.server = new Server();
     }
     
     public void startClient(String ip) throws UnknownHostException, IOException
     {
         this.client = new Client(ip);
-        this.client.start();
+    }
+    
+    public void showPanel(String name) {
+        CardLayout cl = (CardLayout)(this.mainPanel2.getLayout());
+        cl.show(this.mainPanel2, name);
+    }
+    
+    public JTextArea getLogTextArea() {
+        return this.getWorkingPanel().getLogTextArea();
+    }
+    
+    public Network getNetwork() 
+    {
+        return (Network)(mode.equals("Server") ? this.server : this.client);
+    }
+    
+    /**
+     * Creates new form MainFrame2
+     */
+    public MainFrame() {
+        try {
+            initComponents();
+            
+            MyConnector.view = new ViewFrame();
+            
+            MyConnector.main = this;
+            
+            this.setLocation(400, 150);
+            this.setResizable(false);
+            
+           // MyConnector.main.setType(Type.POPUP);
+          //  MyConnector.main.setUndecorated(true);
+            
+            this.server = new Server();
+            
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -60,45 +88,88 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        viewPanel1 = new myconnector.mainframe.ViewPanel();
+        mainPanel2 = new myconnector.mainframe.MainPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().add(viewPanel1, java.awt.BorderLayout.CENTER);
+        setResizable(false);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
+            }
+        });
+        getContentPane().setLayout(new java.awt.CardLayout());
+        getContentPane().add(mainPanel2, "card2");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menu_item_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_item_exitActionPerformed
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
         // TODO add your handling code here:
-    }//GEN-LAST:event_menu_item_exitActionPerformed
+    }//GEN-LAST:event_formComponentResized
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MainFrame().setVisible(true);
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private myconnector.mainframe.ViewPanel viewPanel1;
+    private myconnector.mainframe.MainPanel mainPanel2;
     // End of variables declaration//GEN-END:variables
-    
-    public void showPanel(String name) {
-        CardLayout cl = (CardLayout)(this.getGlobalPanel().getLayout());
-        cl.show(this.getGlobalPanel(), name);
+
+    public WorkingPanel getWorkingPanel() {
+        return this.mainPanel2.getWorkingPanel();
     }
     
-    public ViewPanel getGlobalPanel() {
-        return viewPanel1;
-    }
-    
-    public Network getNetwork() 
+    public void fixedFrame()
     {
-        return (Network)(mode.equals("Server") ? this.server : this.client);
+        Rectangle view_frame_rect = myconnector.MyConnector.view.getBounds();
+        System.out.println("Start fixed");
+        System.out.println(view_frame_rect);
+        
+        double main_w = ((int)view_frame_rect.width * 0.2);
+        double main_h = ((int)view_frame_rect.height * 0.5);
+        
+        double main_x = view_frame_rect.x + view_frame_rect.width - main_w;
+        double main_y = view_frame_rect.y + view_frame_rect.height - main_h;
+        
+       // main_x = main_x - view_frame_rect.x;
+       // main_y = main_y - view_frame_rect.y;
+        
+        Rectangle new_pos_main;
+        new_pos_main = new Rectangle((int)main_x, (int)main_y, (int)main_w, (int)main_h);
+        
+        myconnector.MyConnector.main.setBounds(new_pos_main);
+        
+        System.out.println(new_pos_main);
     }
     
-    public Server getServer() {
-        return server;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public JTextArea getLogTextArea() {
-        return this.viewPanel1.getWorkingPanel().getLogTextArea();
-    }
 }

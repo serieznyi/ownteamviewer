@@ -76,17 +76,10 @@ public class Server extends Network {
             
             this.socketViewer = this.serverView.accept();
             MyConnector.log.show_message("Client conected");
-        //    System.out.println(this.socket.getKeepAlive());
-            
-           // this.keep_alive();
+
             MyConnector.main.showPanel("work_panel");
 
-           // this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-           // this.out = new PrintWriter(this.socket.getOutputStream(), true);
-            
             this.screenCapture = new ScreenCapture(socketViewer, robot, rectangle);
-            
-           // this.read_message();
             
         } catch (IOException e) {
             System.out.println("Can't accept");
